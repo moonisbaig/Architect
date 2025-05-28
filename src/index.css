@@ -1,0 +1,146 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%; /* Black */
+    --foreground: 0 0% 98%; /* White */
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+ 
+    --secondary: 0 0% 14.9%; /* Dark Gray */
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 0 0% 25%; /* Medium Gray */
+    --muted-foreground: 0 0% 70%; /* Light Gray */
+ 
+    --accent:  0 0% 20%; /* Slightly lighter gray for hover/accent */
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%; /* Darker border for better contrast on dark theme */
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+
+    --radius: 0.5rem;
+  }
+
+  /* Example for a light theme if needed, not active by default */
+  .light {
+    --background: 0 0% 98%; /* White */
+    --foreground: 0 0% 3.9%; /* Black */
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 3.9%;
+ 
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 3.9%;
+ 
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+ 
+    --secondary: 0 0% 90%; /* Light Gray */
+    --secondary-foreground: 0 0% 9%;
+ 
+    --muted: 0 0% 85%; /* Lighter Gray */
+    --muted-foreground: 0 0% 40%; 
+ 
+    --accent:  0 0% 80%; 
+    --accent-foreground: 0 0% 9%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 80%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif; /* Default sans-serif */
+  }
+
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .cursor-crosshair {
+    cursor: crosshair;
+  }
+  .cursor-pointer-minimal {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white'><circle cx='8' cy='8' r='3'/></svg>") 8 8, auto;
+  }
+   .cursor-pointer-arrow {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'></line><polyline points='12 5 19 12 12 19'></polyline></svg>") 12 12, auto;
+  }
+}
+
+/* For Webkit scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary) / 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.7);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent-foreground) / 0.9);
+}
+
+/* Thin scrollbar utility */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.5) hsl(var(--secondary) / 0.5);
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.5);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+
+.card-open {
+  pointer-events: auto !important; /* Ensure modal is interactive */
+}
+
+/* Responsive timeline specific styles */
+@media (max-width: 768px) {
+  /* Styles for mobile timeline card view can be added here if needed, 
+     but most are handled by component logic and Tailwind classes */
+}
+@media (min-width: 769px) {
+  /* Styles for desktop hover background change are handled by component logic */
+}
