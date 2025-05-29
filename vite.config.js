@@ -68,7 +68,7 @@ window.onerror = (message, source, lineno, colno, errorObj) => {
 };
 `;
 
-const configHorizonsConsoleErrroHandler = `
+const configHorizonsConsoleErrorHandler = `
 const originalConsoleError = console.error;
 console.error = function(...args) {
 	originalConsoleError.apply(console, args);
@@ -124,7 +124,7 @@ window.fetch = function(...args) {
 			return response;
 		})
 		.catch(error => {
-			if (!url.match(/\.html?$/i)) {
+			if (!url.match(/\\.html?$/i)) {
 				console.error(error);
 			}
 
@@ -153,8 +153,8 @@ const addTransformIndexHtml = {
 				},
 				{
 					tag: 'script',
-					attrs: {type: 'module'},
-					children: configHorizonsConsoleErrroHandler,
+					attrs: { type: 'module' },
+					children: configHorizonsConsoleErrorHandler,
 					injectTo: 'head',
 				},
 				{
@@ -168,35 +168,36 @@ const addTransformIndexHtml = {
 	},
 };
 
-console.warn = () => {};
+// Only disable warnings in production
+if (process.env.NODE_ENV === 'production') {
+	console.warn = () => {};
+}
 
-const logger = createLogger()
-const loggerError = logger.error
+const logger = createLogger();
+const loggerError = logger.error;
 
 logger.error = (msg, options) => {
 	if (options?.error?.toString().includes('CssSyntaxError: [postcss]')) {
 		return;
 	}
-
 	loggerError(msg, options);
-}
+};
 
 export default defineConfig({
-  base: '/Architect/', // ✅ GitHub Pages subdirectory fix
-  customLogger: logger,
-  plugins: [react(), addTransformIndexHtml],
-  server: {
-    cors: true,
-    headers: {
-      'Cross-Origin-Embedder-Policy': 'credentialless',
-    },
-    allowedHosts: true,
-  },
-  resolve: {
-    extensions: ['.jsx', '.js', '.tsx', '.ts', '.json'],
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+	base: '/Architect/', // ✅ GitHub Pages subdirectory fix
+	customLogger: logger,
+	plugins: [react(), addTransformIndexHtml],
+	server: {
+		cors: true,
+		headers: {
+			'Cross-Origin-Embedder-Policy': 'credentialless',
+		},
+		allowedHosts: true,
+	},
+	resolve: {
+		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json'],
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+		},
+	},
 });
-
