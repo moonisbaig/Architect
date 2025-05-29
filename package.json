@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://moonisbaig.github.io/Architect",
+  "homepage": "https://moonisbaig.github.io/Architect/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
